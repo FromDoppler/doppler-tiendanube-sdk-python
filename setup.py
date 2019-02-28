@@ -28,7 +28,7 @@ setup(
         "furl==2.0.0",
         "ipython==7.2.0",
         "mock==1.0.1",
-        "orderedmultidict==0.7.1",
+        "orderedmultidict==1.0",
         "py==1.4.15",
         "pytz==2018.9",
         "requests==2.21.0",
