@@ -11,7 +11,7 @@ setup(
         'tiendanube',
         'tiendanube.resources',
     ],
-    version = '1.1',
+    version = '1.2',
     description = '',
     license = 'MIT',
     long_description = read('README.rst'),
