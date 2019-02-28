@@ -24,7 +24,7 @@ setup(
 
     install_requires = [
         "argparse==1.2.1",
-        "bunch==1.0.1",
+        "munch==2.3.2",
         "furl==2.0.0",
         "ipython==7.2.0",
         "mock==1.0.1",
