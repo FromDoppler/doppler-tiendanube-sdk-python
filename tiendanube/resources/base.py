@@ -2,7 +2,7 @@
 import datetime
 import json
 
-from bunch import bunchify
+from munch import munchify
 
 from .exceptions import APIError
 
@@ -31,7 +31,7 @@ class Resource(object):
 class ListResource(Resource):
 
     def get(self, id):
-        return bunchify(json.loads(self._make_request(self.resource_name, resource_id=str(id)).content))
+        return munchify(json.loads(self._make_request(self.resource_name, resource_id=str(id)).content))
 
     def list(self, filters={}, fields={}):
         """
@@ -40,18 +40,18 @@ class ListResource(Resource):
         extra = {k:_get_value(v) for k,v in filters.items()}
         if fields:
             extra['fields'] = fields
-        return bunchify(json.loads(self._make_request(self.resource_name, extra=extra).content))
+        return munchify(json.loads(self._make_request(self.resource_name, extra=extra).content))
 
     def add(self, resource_dict):
-        return bunchify(json.loads(self._make_request(self.resource_name, data=resource_dict, verb='post').text))
+        return munchify(json.loads(self._make_request(self.resource_name, data=resource_dict, verb='post').text))
 
     def update(self, resource_update_dict):
         res_id = str(resource_update_dict['id'])
-        return bunchify(json.loads(self._make_request(self.resource_name, resource_id=res_id, data=resource_update_dict, verb='put').text))
+        return munchify(json.loads(self._make_request(self.resource_name, resource_id=res_id, data=resource_update_dict, verb='put').text))
 
     def delete(self, resource_delete_dict):
         res_id = str(resource_delete_dict['id'])
-        return bunchify(json.loads(self._make_request(self.resource_name, resource_id=res_id, verb='delete').text))
+        return munchify(json.loads(self._make_request(self.resource_name, resource_id=res_id, verb='delete').text))
 
 
 class ListSubResource(ListResource):
@@ -63,7 +63,7 @@ class ListSubResource(ListResource):
         self.subresource = subresource
 
     def get(self, id):
-        return bunchify(json.loads(self._make_request(
+        return munchify(json.loads(self._make_request(
             self.resource_name,
             resource_id=str(self.resource_id),
             subresource=self.subresource,
@@ -77,7 +77,7 @@ class ListSubResource(ListResource):
         extra = {k:_get_value(v) for k,v in filters.items()}
         if fields:
             extra['fields'] = fields
-        return bunchify(json.loads(self._make_request(
+        return munchify(json.loads(self._make_request(
             self.resource_name,
             resource_id=str(self.resource_id),
             subresource=self.subresource,
@@ -85,7 +85,7 @@ class ListSubResource(ListResource):
         )
 
     def add(self, subresource_dict):
-        return bunchify(json.loads(self._make_request(
+        return munchify(json.loads(self._make_request(
             self.resource_name,
             resource_id=str(self.resource_id),
             subresource=self.subresource,
@@ -93,7 +93,7 @@ class ListSubResource(ListResource):
             verb='post').text))
 
     def update(self, subresource_update_dict):
-        return bunchify(json.loads(self._make_request(
+        return munchify(json.loads(self._make_request(
             self.resource_name,
             resource_id=str(self.resource_id),
             subresource=self.subresource,
