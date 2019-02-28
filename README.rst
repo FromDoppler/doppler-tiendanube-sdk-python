@@ -1,8 +1,8 @@
 nuvemshop-python
 =================
 
-.. image:: https://travis-ci.org/catalanojuan/tiendanube-python.png?branch=master   
-   :target: https://travis-ci.org/catalanojuan/tiendanube-python
+.. image:: https://travis-ci.org/sabino/nuvemshop-python.png?branch=master   
+   :target: https://travis-ci.org/sabino/nuvemshop-python
 
 NuvemShop API Python Client.
 
@@ -14,13 +14,16 @@ Just ``pip install git+https://github.com/sabino/nuvemshop-python.git --upgrade 
 Usage
 -----
 
+API_KEY is your authentication token. After you've successfully authenticate:
+https://github.com/tiendanube/api-docs/blob/master/resources/authentication.md
+
 Query list of products::
 
     > api_key = 'API_KEY'
-    > from tiendanube import NubeClient
+    > from tiendanube.client import NubeClient
     > client = NubeClient(api_key)
     > store = client.get_store(1)
-    > [p.name.es for p in store.products.list()]
+    > [p.name for p in store.products.list()]
     [u'Mi primer producto',
      u'Probando publicaci\xf3n',
      u'hola',
@@ -29,17 +32,17 @@ Query list of products::
 Query one product in particular::
 
     > api_key = 'API_KEY'
-    > from tiendanube import NubeClient
+    > from tiendanube.client import NubeClient
     > client = NubeClient(api_key)
     > store = client.get_store(1)
     > p = store.products.get(911)
-    > p.name.es
+    > p.name
     u'Mi primer producto'
 
 Query images for a given product::
 
     > api_key = 'API_KEY'
-    > from tiendanube import NubeClient
+    > from tiendanube.client import NubeClient
     > client = NubeClient(api_key)
     > store = client.get_store(1)
     > p = store.products.get(911)
@@ -49,18 +52,18 @@ Query images for a given product::
 Add a product to the store::
 
     > api_key = 'API_KEY'
-    > from tiendanube import NubeClient
+    > from tiendanube.client import NubeClient
     > client = NubeClient(api_key)
     > store = client.get_store(1)
-    > p = store.products.add({ "name": {"es": "My new product"} })
+    > p = store.products.add({ "name": {"pt": "My new product"} })
 
 Update a product on the store::
 
     > api_key = 'API_KEY'
-    > from tiendanube import NubeClient
+    > from tiendanube.client import NubeClient
     > client = NubeClient(api_key)
     > store = client.get_store(1)
-    > p = store.products.update({ "id":123, "name": {"es": "My AWESOME product"} })
+    > p = store.products.update({ "id":123, "name": {"pt": "My AWESOME product"} })
 
 Development
 -----------
