@@ -1,15 +1,15 @@
-tiendanube-python
+nuvemshop-python
 =================
 
 .. image:: https://travis-ci.org/catalanojuan/tiendanube-python.png?branch=master   
    :target: https://travis-ci.org/catalanojuan/tiendanube-python
 
-TiendaNube API Python Client.
+NuvemShop API Python Client.
 
 Install
 -------
 
-Just ``pip install tiendanube``.
+Just ``pip install git+https://github.com/sabino/tiendanube-python.git --upgrade --no-cache-dir``.
 
 Usage
 -----
