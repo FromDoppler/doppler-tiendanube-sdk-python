@@ -32,7 +32,6 @@ setup(
         "py==1.4.15",
         "pytz==2013b",
         "requests==1.2.3",
-        "wsgiref==0.1.2",
     ],
 
     classifiers = (
