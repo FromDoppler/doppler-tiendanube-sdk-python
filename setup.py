@@ -26,12 +26,12 @@ setup(
         "argparse==1.2.1",
         "bunch==1.0.1",
         "furl==0.3.4",
-        "ipython==1.0.0",
+        "ipython==7.2.0",
         "mock==1.0.1",
         "orderedmultidict==0.7.1",
         "py==1.4.15",
-        "pytz==2013b",
-        "requests==1.2.3",
+        "pytz==2018.9",
+        "requests==2.21.0",
     ],
 
     classifiers = (
