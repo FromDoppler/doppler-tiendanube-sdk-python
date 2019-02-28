@@ -9,7 +9,7 @@ NuvemShop API Python Client.
 Install
 -------
 
-Just ``pip install git+https://github.com/sabino/tiendanube-python.git --upgrade --no-cache-dir``.
+Just ``pip install git+https://github.com/sabino/nuvemshop-python.git --upgrade --no-cache-dir``.
 
 Usage
 -----
