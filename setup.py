@@ -23,15 +23,15 @@ setup(
     author_email = 'catalanojuan@gmail.com',
 
     install_requires = [
-        "argparse==1.2.1",
-        "munch==2.3.2",
-        "furl==2.0.0",
-        "ipython==7.2.0",
-        "mock==1.0.1",
-        "orderedmultidict==1.0",
-        "py==1.4.15",
-        "pytz==2018.9",
-        "requests==2.21.0",
+        "argparse==1.4.0",
+        "munch==2.5.0",
+        "furl==2.1.0",
+        "ipython==5.9.0",
+        "mock==3.0.5",
+        "orderedmultidict==1.0.1",
+        "py==1.8.1",
+        "pytz==2019.3",
+        "requests==2.23.0",
     ],
 
     classifiers = (
