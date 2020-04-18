@@ -33,11 +33,13 @@ class ListResource(Resource):
     def get(self, id):
         return munchify(json.loads(self._make_request(self.resource_name, resource_id=str(id)).content))
 
-    def list(self, filters={}, fields={}):
+    def list(self, filters=None, fields=None):
         """
         Get the list of customers for a store.
         """
-        extra = {k:_get_value(v) for k,v in filters.items()}
+        extra = dict()
+        if filters:
+            extra = {k: _get_value(v) for k, v in filters.items()}
         if fields:
             extra['fields'] = fields
         return munchify(json.loads(self._make_request(self.resource_name, extra=extra).content))
