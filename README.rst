@@ -1,15 +1,15 @@
 nuvemshop-python
 =================
 
-.. image:: https://travis-ci.org/sabino/nuvemshop-python.png?branch=master   
-   :target: https://travis-ci.org/sabino/nuvemshop-python
+.. image:: https://travis-ci.org/kmee/nuvemshop-python.png?branch=master   
+   :target: https://travis-ci.org/kmee/nuvemshop-python
 
 NuvemShop API Python Client.
 
 Install
 -------
 
-Just ``pip install git+https://github.com/sabino/nuvemshop-python.git --upgrade --no-cache-dir``.
+Just ``pip install git+https://github.com/kmee/nuvemshop-python.git --upgrade --no-cache-dir``.
 
 Usage
 -----
