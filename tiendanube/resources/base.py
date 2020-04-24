@@ -58,21 +58,20 @@ class ListResource(Resource):
 
 class ListSubResource(ListResource):
 
-    def __init__(self, resource, resource_id, subresource):
+    def __init__(self, resource, subresource):
         super(ListSubResource, self).__init__(resource._http_client, resource.store_id)
         self.resource_name = resource.resource_name
-        self.resource_id = resource_id
         self.subresource = subresource
 
-    def get(self, id):
+    def get(self, resource_id, id):
         return munchify(json.loads(self._make_request(
             self.resource_name,
-            resource_id=str(self.resource_id),
+            resource_id=str(resource_id),
             subresource=self.subresource,
             subresource_id=str(id)).content)
         )
 
-    def list(self, filters={}, fields={}):
+    def list(self, resource_id, filters={}, fields={}):
         """
         Get the list of customers for a store.
         """
@@ -81,23 +80,23 @@ class ListSubResource(ListResource):
             extra['fields'] = fields
         return munchify(json.loads(self._make_request(
             self.resource_name,
-            resource_id=str(self.resource_id),
+            resource_id=str(resource_id),
             subresource=self.subresource,
             extra=extra).content)
         )
 
-    def add(self, subresource_dict):
+    def add(self, resource_id, subresource_dict):
         return munchify(json.loads(self._make_request(
             self.resource_name,
-            resource_id=str(self.resource_id),
+            resource_id=str(resource_id),
             subresource=self.subresource,
             data=subresource_dict,
             verb='post').text))
 
-    def update(self, subresource_update_dict):
+    def update(self, resource_id, subresource_update_dict):
         return munchify(json.loads(self._make_request(
             self.resource_name,
-            resource_id=str(self.resource_id),
+            resource_id=str(resource_id),
             subresource=self.subresource,
             subresource_id=subresource_update_dict['id'],
             data=subresource_update_dict,
