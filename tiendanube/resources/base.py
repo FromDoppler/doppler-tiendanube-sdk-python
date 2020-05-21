@@ -42,7 +42,22 @@ class ListResource(Resource):
             extra = {k: _get_value(v) for k, v in filters.items()}
         if fields:
             extra['fields'] = fields
-        return munchify(json.loads(self._make_request(self.resource_name, extra=extra).content))
+        params = {
+            'resource': self.resource_name,
+            'extra': extra
+        }
+        page = 1
+        while True:
+            response = self._make_request(**params)
+            yield munchify(json.loads(response.content))
+            if not response.links.get('next'):
+                break
+            else:
+                page = page + 1
+                params.get('extra').update({
+                    'page': page
+                })
+
 
     def add(self, resource_dict):
         return munchify(json.loads(self._make_request(self.resource_name, data=resource_dict, verb='post').text))
