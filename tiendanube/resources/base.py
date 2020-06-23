@@ -66,6 +66,17 @@ class ListResource(Resource):
         res_id = str(resource_update_dict['id'])
         return munchify(json.loads(self._make_request(self.resource_name, resource_id=res_id, data=resource_update_dict, verb='put').text))
 
+    def command(self, resource_update_dict, **kwargs):
+        res_id = str(resource_update_dict['id'])
+        return munchify(
+            json.loads(
+                self._make_request(
+                    self.resource_name, resource_id=res_id,
+                    data=resource_update_dict, verb='post', **kwargs
+                ).text
+            )
+        )
+
     def delete(self, resource_delete_dict):
         res_id = str(resource_delete_dict['id'])
         return munchify(json.loads(self._make_request(self.resource_name, resource_id=res_id, verb='delete').text))

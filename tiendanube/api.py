@@ -28,7 +28,7 @@ def _do_verb(verb, url, payload, headers):
 class APIClient(object):
     API_VERSION = 'v1'
     API_ENDPOINT = 'https://api.tiendanube.com'
-    ARGS = ['resource_id', 'subresource', 'subresource_id']
+    ARGS = ['resource_id', 'subresource', 'subresource_id', 'command']
 
     def __init__(self, api_key, user_agent):
         headers = {
