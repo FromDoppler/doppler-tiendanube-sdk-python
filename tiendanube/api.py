@@ -1,12 +1,7 @@
 # -*- coding: utf-8 -*-
 import json
-import logging
-
 import requests
 from furl import furl
-
-
-logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
 
 
 def _do_verb(verb, url, payload, headers):
