@@ -31,7 +31,7 @@ setup(
         "orderedmultidict==1.0.1",
         "py==1.8.1",
         "pytz==2019.3",
-        "requests==2.25.1",
+        "requests==2.27.0",
     ],
 
     classifiers = (
