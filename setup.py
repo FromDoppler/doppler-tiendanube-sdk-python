@@ -11,7 +11,7 @@ setup(
         'tiendanube',
         'tiendanube.resources',
     ],
-    version = '1.2.1',
+    version = '1.2.2',
     description = '',
     license = 'MIT',
     long_description = read('README.rst'),
@@ -24,14 +24,14 @@ setup(
 
     install_requires = [
         "argparse==1.4.0",
-        "munch==2.5.0",
-        "furl==2.1.0",
-        "ipython==5.9.0",
-        "mock==3.0.5",
+        "munch==4.0.0",
+        "furl==2.1.3",
+        "ipython==8.25.0",
+        "mock==5.1.0",
         "orderedmultidict==1.0.1",
-        "py==1.8.1",
-        "pytz==2019.3",
-        "requests==2.27.0",
+        "py==1.11.0",
+        "pytz==2024.1",
+        "requests==2.31.0",
     ],
 
     classifiers = (
