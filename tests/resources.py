@@ -1,9 +1,7 @@
-# -*- coding: utf-8 -*-
 import datetime
 import json
 import unittest
 
-from bunch import bunchify
 from mock import Mock, patch
 from pytz import utc
 
@@ -27,7 +25,7 @@ class StoreResourceReadTest(unittest.TestCase):
 
         res = s.get()
 
-        self.assertEqual(bunchify({'id': 46, 'name': 'test store'}), res)
+        self.assertEqual({'id': 46, 'name': 'test store'}, res)
 
         requests_mock.get.assert_called_with(
             url='https://api.tiendanube.com/v1/46/store',
@@ -52,10 +50,10 @@ class ProductResourceReadTest(unittest.TestCase):
 
         res = p.list()
 
-        self.assertEqual(bunchify([
+        self.assertEqual([
             {'id': 46, 'name': 'test prod'},
             {'id': 47, 'name': 'test prod 2'},
-        ]), res)
+        ], res)
 
         requests_mock.get.assert_called_with(
             url='https://api.tiendanube.com/v1/46/products',
@@ -77,10 +75,10 @@ class ProductResourceReadTest(unittest.TestCase):
 
         res = p.list(fields='id')
 
-        self.assertEqual(bunchify([
+        self.assertEqual([
             {'id': 46},
             {'id': 47},
-        ]), res)
+        ], res)
 
         requests_mock.get.assert_called_with(
             url='https://api.tiendanube.com/v1/46/products',
@@ -101,9 +99,9 @@ class ProductResourceReadTest(unittest.TestCase):
 
         res = p.list(filters={'since_id': 47}, fields='id')
 
-        self.assertEqual(bunchify([
+        self.assertEqual([
             {'id': 47},
-        ]), res)
+        ], res)
 
         requests_mock.get.assert_called_with(
             url='https://api.tiendanube.com/v1/46/products',
@@ -125,9 +123,9 @@ class ProductResourceReadTest(unittest.TestCase):
         created_at_min = datetime.datetime(2013, 1, 1, 0, 0, 0).replace(tzinfo=utc)
         res = p.list(filters={'since_id': 47, 'created_at_min': created_at_min}, fields='id')
 
-        self.assertEqual(bunchify([
+        self.assertEqual([
             {'id': 47},
-        ]), res)
+        ], res)
 
         requests_mock.get.assert_called_with(
             url='https://api.tiendanube.com/v1/46/products',
@@ -176,7 +174,7 @@ class ProductResourceReadTest(unittest.TestCase):
         )
         response_mock.content = json.dumps([{'id': 991, 'name': 'test prod variant'}])
         res = res.variants.list()
-        self.assertEqual(bunchify([{'id': 991, 'name': 'test prod variant'}]), res)
+        self.assertEqual([{'id': 991, 'name': 'test prod variant'}], res)
 
         requests_mock.get.assert_called_with(
             url='https://api.tiendanube.com/v1/46/products/991/variants',
@@ -205,7 +203,7 @@ class ProductResourceReadTest(unittest.TestCase):
         )
         response_mock.content = json.dumps({'id': 1, 'name': 'test prod variant'})
         res = res.variants.get(1)
-        self.assertEqual(bunchify({'id': 1, 'name': 'test prod variant'}), res)
+        self.assertEqual({'id': 1, 'name': 'test prod variant'}, res)
 
         requests_mock.get.assert_called_with(
             url='https://api.tiendanube.com/v1/46/products/991/variants/1',
@@ -234,7 +232,7 @@ class ProductResourceReadTest(unittest.TestCase):
         )
         response_mock.content = json.dumps([{'id': 991, 'name': 'test prod image'}])
         res = res.images.list()
-        self.assertEqual(bunchify([{'id': 991, 'name': 'test prod image'}]), res)
+        self.assertEqual([{'id': 991, 'name': 'test prod image'}], res)
 
         requests_mock.get.assert_called_with(
             url='https://api.tiendanube.com/v1/46/products/991/images',
@@ -263,7 +261,7 @@ class ProductResourceReadTest(unittest.TestCase):
         )
         response_mock.content = json.dumps({'id': 1, 'name': 'test prod image'})
         res = res.images.get(1)
-        self.assertEqual(bunchify({'id': 1, 'name': 'test prod image'}), res)
+        self.assertEqual({'id': 1, 'name': 'test prod image'}, res)
 
         requests_mock.get.assert_called_with(
             url='https://api.tiendanube.com/v1/46/products/991/images/1',
@@ -288,10 +286,10 @@ class CustomerResourceReadTest(unittest.TestCase):
 
         res = c.list()
 
-        self.assertEqual(bunchify([
+        self.assertEqual([
             {'id': 46, 'name': 'test cust'},
             {'id': 47, 'name': 'test cust 2'},
-        ]), res)
+        ], res)
 
         requests_mock.get.assert_called_with(
             url='https://api.tiendanube.com/v1/46/customers',
@@ -313,10 +311,10 @@ class CustomerResourceReadTest(unittest.TestCase):
 
         res = c.list(fields='id')
 
-        self.assertEqual(bunchify([
+        self.assertEqual([
             {'id': 46},
             {'id': 47},
-        ]), res)
+        ], res)
 
         requests_mock.get.assert_called_with(
             url='https://api.tiendanube.com/v1/46/customers',
@@ -337,9 +335,9 @@ class CustomerResourceReadTest(unittest.TestCase):
 
         res = c.list(filters={'since_id': 47}, fields='id')
 
-        self.assertEqual(bunchify([
+        self.assertEqual([
             {'id': 47},
-        ]), res)
+        ], res)
 
         requests_mock.get.assert_called_with(
             url='https://api.tiendanube.com/v1/46/customers',
@@ -361,9 +359,9 @@ class CustomerResourceReadTest(unittest.TestCase):
         created_at_min = datetime.datetime(2013, 1, 1, 0, 0, 0).replace(tzinfo=utc)
         res = c.list(filters={'since_id': 47, 'created_at_min': created_at_min}, fields='id')
 
-        self.assertEqual(bunchify([
+        self.assertEqual([
             {'id': 47},
-        ]), res)
+        ], res)
 
         requests_mock.get.assert_called_with(
             url='https://api.tiendanube.com/v1/46/customers',
@@ -408,10 +406,10 @@ class OrderResourceReadTest(unittest.TestCase):
 
         res = o.list()
 
-        self.assertEqual(bunchify([
+        self.assertEqual([
             {'id': 46, 'name': 'test order'},
             {'id': 47, 'name': 'test order 2'},
-        ]), res)
+        ], res)
 
         requests_mock.get.assert_called_with(
             url='https://api.tiendanube.com/v1/46/orders',
@@ -433,10 +431,10 @@ class OrderResourceReadTest(unittest.TestCase):
 
         res = o.list(fields='id')
 
-        self.assertEqual(bunchify([
+        self.assertEqual([
             {'id': 46},
             {'id': 47},
-        ]), res)
+        ], res)
 
         requests_mock.get.assert_called_with(
             url='https://api.tiendanube.com/v1/46/orders',
@@ -457,9 +455,9 @@ class OrderResourceReadTest(unittest.TestCase):
 
         res = o.list(filters={'since_id': 47}, fields='id')
 
-        self.assertEqual(bunchify([
+        self.assertEqual([
             {'id': 47},
-        ]), res)
+        ], res)
 
         requests_mock.get.assert_called_with(
             url='https://api.tiendanube.com/v1/46/orders',
@@ -481,9 +479,9 @@ class OrderResourceReadTest(unittest.TestCase):
         created_at_min = datetime.datetime(2013, 1, 1, 0, 0, 0).replace(tzinfo=utc)
         res = o.list(filters={'since_id': 47, 'created_at_min': created_at_min}, fields='id')
 
-        self.assertEqual(bunchify([
+        self.assertEqual([
             {'id': 47},
-        ]), res)
+        ], res)
 
         requests_mock.get.assert_called_with(
             url='https://api.tiendanube.com/v1/46/orders',
@@ -528,10 +526,10 @@ class ScriptResourceReadTest(unittest.TestCase):
 
         res = s.list()
 
-        self.assertEqual(bunchify([
+        self.assertEqual([
             {'id': 46, 'src': 'test script'},
             {'id': 47, 'src': 'test script 2'},
-        ]), res)
+        ], res)
 
         requests_mock.get.assert_called_with(
             url='https://api.tiendanube.com/v1/46/scripts',
@@ -553,10 +551,10 @@ class ScriptResourceReadTest(unittest.TestCase):
 
         res = s.list(fields='id')
 
-        self.assertEqual(bunchify([
+        self.assertEqual([
             {'id': 46},
             {'id': 47},
-        ]), res)
+        ], res)
 
         requests_mock.get.assert_called_with(
             url='https://api.tiendanube.com/v1/46/scripts',
@@ -577,9 +575,9 @@ class ScriptResourceReadTest(unittest.TestCase):
 
         res = s.list(filters={'since_id': 47}, fields='id')
 
-        self.assertEqual(bunchify([
+        self.assertEqual([
             {'id': 47},
-        ]), res)
+        ], res)
 
         requests_mock.get.assert_called_with(
             url='https://api.tiendanube.com/v1/46/scripts',
@@ -601,9 +599,9 @@ class ScriptResourceReadTest(unittest.TestCase):
         created_at_min = datetime.datetime(2013, 1, 1, 0, 0, 0).replace(tzinfo=utc)
         res = s.list(filters={'since_id': 47, 'created_at_min': created_at_min}, fields='id')
 
-        self.assertEqual(bunchify([
+        self.assertEqual([
             {'id': 47},
-        ]), res)
+        ], res)
 
         requests_mock.get.assert_called_with(
             url='https://api.tiendanube.com/v1/46/scripts',
@@ -648,10 +646,10 @@ class WebhookResourceReadTest(unittest.TestCase):
 
         res = w.list()
 
-        self.assertEqual(bunchify([
+        self.assertEqual([
             {'id': 46, 'src': 'test webh'},
             {'id': 47, 'src': 'test webh 2'},
-        ]), res)
+        ], res)
 
         requests_mock.get.assert_called_with(
             url='https://api.tiendanube.com/v1/46/webhooks',
@@ -673,10 +671,10 @@ class WebhookResourceReadTest(unittest.TestCase):
 
         res = w.list(fields='id')
 
-        self.assertEqual(bunchify([
+        self.assertEqual([
             {'id': 46},
             {'id': 47},
-        ]), res)
+        ], res)
 
         requests_mock.get.assert_called_with(
             url='https://api.tiendanube.com/v1/46/webhooks',
@@ -697,9 +695,9 @@ class WebhookResourceReadTest(unittest.TestCase):
 
         res = w.list(filters={'since_id': 47}, fields='id')
 
-        self.assertEqual(bunchify([
+        self.assertEqual([
             {'id': 47},
-        ]), res)
+        ], res)
 
         requests_mock.get.assert_called_with(
             url='https://api.tiendanube.com/v1/46/webhooks',
@@ -721,9 +719,9 @@ class WebhookResourceReadTest(unittest.TestCase):
         created_at_min = datetime.datetime(2013, 1, 1, 0, 0, 0).replace(tzinfo=utc)
         res = w.list(filters={'since_id': 47, 'created_at_min': created_at_min}, fields='id')
 
-        self.assertEqual(bunchify([
+        self.assertEqual([
             {'id': 47},
-        ]), res)
+        ], res)
 
         requests_mock.get.assert_called_with(
             url='https://api.tiendanube.com/v1/46/webhooks',
@@ -768,10 +766,10 @@ class CategoryResourceReadTest(unittest.TestCase):
 
         res = c.list()
 
-        self.assertEqual(bunchify([
+        self.assertEqual([
             {'id': 46, 'name': 'test cat'},
             {'id': 47, 'name': 'test cat 2'},
-        ]), res)
+        ], res)
 
         requests_mock.get.assert_called_with(
             url='https://api.tiendanube.com/v1/46/categories',
@@ -793,10 +791,10 @@ class CategoryResourceReadTest(unittest.TestCase):
 
         res = c.list(fields='id')
 
-        self.assertEqual(bunchify([
+        self.assertEqual([
             {'id': 46},
             {'id': 47},
-        ]), res)
+        ], res)
 
         requests_mock.get.assert_called_with(
             url='https://api.tiendanube.com/v1/46/categories',
@@ -817,9 +815,9 @@ class CategoryResourceReadTest(unittest.TestCase):
 
         res = c.list(filters={'since_id': 47}, fields='id')
 
-        self.assertEqual(bunchify([
+        self.assertEqual([
             {'id': 47},
-        ]), res)
+        ], res)
 
         requests_mock.get.assert_called_with(
             url='https://api.tiendanube.com/v1/46/categories',
@@ -841,9 +839,9 @@ class CategoryResourceReadTest(unittest.TestCase):
         created_at_min = datetime.datetime(2013, 1, 1, 0, 0, 0).replace(tzinfo=utc)
         res = c.list(filters={'since_id': 47, 'created_at_min': created_at_min}, fields='id')
 
-        self.assertEqual(bunchify([
+        self.assertEqual([
             {'id': 47},
-        ]), res)
+        ], res)
 
         requests_mock.get.assert_called_with(
             url='https://api.tiendanube.com/v1/46/categories',
@@ -887,9 +885,9 @@ class ProductResourceWriteTest(unittest.TestCase):
 
         res = p.add({'id': 46, 'name': 'test prod'})
 
-        self.assertEqual(bunchify(
+        self.assertEqual(
             {'id': 46, 'name': 'test prod'}
-        ), res)
+        , res)
 
         requests_mock.post.assert_called_with(
             url='https://api.tiendanube.com/v1/46/products',
@@ -932,9 +930,9 @@ class CustomerResourceWriteTest(unittest.TestCase):
 
         res = c.add({'id': 46, 'name': 'test cust'})
 
-        self.assertEqual(bunchify(
+        self.assertEqual(
             {'id': 46, 'name': 'test cust'}
-        ), res)
+        , res)
 
         requests_mock.post.assert_called_with(
             url='https://api.tiendanube.com/v1/46/customers',
@@ -977,9 +975,9 @@ class OrderResourceWriteTest(unittest.TestCase):
 
         res = o.add({'id': 46, 'name': 'test order'})
 
-        self.assertEqual(bunchify(
+        self.assertEqual(
             {'id': 46, 'name': 'test order'}
-        ), res)
+        , res)
 
         requests_mock.post.assert_called_with(
             url='https://api.tiendanube.com/v1/46/orders',
@@ -1021,9 +1019,9 @@ class ScriptResourceWriteTest(unittest.TestCase):
 
         res = s.add({'id': 46, 'name': 'test script'})
 
-        self.assertEqual(bunchify(
+        self.assertEqual(
             {'id': 46, 'name': 'test script'}
-        ), res)
+        , res)
 
         requests_mock.post.assert_called_with(
             url='https://api.tiendanube.com/v1/46/scripts',
@@ -1065,9 +1063,9 @@ class WebhookResourceWriteTest(unittest.TestCase):
 
         res = w.add({'id': 46, 'name': 'test webhook'})
 
-        self.assertEqual(bunchify(
+        self.assertEqual(
             {'id': 46, 'name': 'test webhook'}
-        ), res)
+        , res)
 
         requests_mock.post.assert_called_with(
             url='https://api.tiendanube.com/v1/46/webhooks',
@@ -1109,9 +1107,9 @@ class CategoryResourceWriteTest(unittest.TestCase):
 
         res = c.add({'id': 46, 'name': 'test category'})
 
-        self.assertEqual(bunchify(
+        self.assertEqual(
             {'id': 46, 'name': 'test category'}
-        ), res)
+        , res)
 
         requests_mock.post.assert_called_with(
             url='https://api.tiendanube.com/v1/46/categories',

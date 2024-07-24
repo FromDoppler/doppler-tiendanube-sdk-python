@@ -11,7 +11,7 @@ setup(
         'tiendanube',
         'tiendanube.resources',
     ],
-    version = '1.2',
+    version = '1.2.1',
     description = '',
     license = 'MIT',
     long_description = read('README.rst'),
@@ -31,7 +31,7 @@ setup(
         "orderedmultidict==1.0.1",
         "py==1.8.1",
         "pytz==2019.3",
-        "requests==2.23.0",
+        "requests==2.25.1",
     ],
 
     classifiers = (
@@ -41,6 +41,6 @@ setup(
         'License :: OSI Approved :: MIT License',
         'Natural Language :: English',
         'Programming Language :: Python',
-        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3.10',
     ),
 )

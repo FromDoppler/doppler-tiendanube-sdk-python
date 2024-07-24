@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
 
-from bunch import bunchify
-
 from .base import ListResource, Resource, ListSubResource
 from .decorators import subresources
 
@@ -43,7 +41,7 @@ class StoreResource(Resource):
         """
         Get a single store.
         """
-        return bunchify(json.loads(self._make_request('store').content))
+        return json.loads(self._make_request('store').content)
 
 
 class WebhookResource(ListResource):
